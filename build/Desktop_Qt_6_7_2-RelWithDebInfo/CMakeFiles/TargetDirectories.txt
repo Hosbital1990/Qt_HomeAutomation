@@ -1,0 +1,9 @@
+/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/CMakeFiles/HomeAutomation.dir
+/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/CMakeFiles/edit_cache.dir
+/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/CMakeFiles/rebuild_cache.dir
+/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/CMakeFiles/list_install_components.dir
+/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/CMakeFiles/install.dir
+/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/CMakeFiles/install/local.dir
+/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/CMakeFiles/install/strip.dir
+/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/CMakeFiles/HomeAutomation_autogen_timestamp_deps.dir
+/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/CMakeFiles/HomeAutomation_autogen.dir

@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-RelWithDebInfo-cf3fe22a2e94f150d06d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "HomeAutomation",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "HomeAutomation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HomeAutomation-RelWithDebInfo-07e724c6a6b82f5b189a.json",
+					"name" : "HomeAutomation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "HomeAutomation_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HomeAutomation_autogen-RelWithDebInfo-ab1dbe8d539c5c78018f.json",
+					"name" : "HomeAutomation_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "HomeAutomation_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HomeAutomation_autogen_timestamp_deps-RelWithDebInfo-3249a2b2be1e1fc2ae89.json",
+					"name" : "HomeAutomation_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo",
+		"source" : "/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt03"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

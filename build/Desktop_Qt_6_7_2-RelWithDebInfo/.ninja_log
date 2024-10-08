@@ -1,0 +1,20 @@
+# ninja log v6
+7	4745	1728332050999907192	HomeAutomation_autogen/timestamp	75393acd4b03859d
+7	4745	1728332050999907192	HomeAutomation_autogen/mocs_compilation.cpp	75393acd4b03859d
+7	4745	1728332050999907192	/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/HomeAutomation_autogen/timestamp	75393acd4b03859d
+7	4745	1728332050999907192	/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/HomeAutomation_autogen/mocs_compilation.cpp	75393acd4b03859d
+4755	29857	1728332051035908056	CMakeFiles/HomeAutomation.dir/actuator.cpp.o	edf38795bb2d3240
+4754	31522	1728332051034908032	CMakeFiles/HomeAutomation.dir/sensor.cpp.o	ca3ffa93084e3df1
+4753	32597	1728332051033908008	CMakeFiles/HomeAutomation.dir/do_some_thing.cpp.o	ebecb7bdea424062
+29857	36973	1728332076137511066	CMakeFiles/HomeAutomation.dir/memory_interface.cpp.o	5667b3fbf54260e3
+4755	37865	1728332051035908056	CMakeFiles/HomeAutomation.dir/temp_sensor.cpp.o	5ec2e985e4590b73
+4750	52856	1728332051030907936	CMakeFiles/HomeAutomation.dir/HomeAutomation_autogen/mocs_compilation.cpp.o	a11a2bdf384791e2
+4758	53218	1728332051039908153	CMakeFiles/HomeAutomation.dir/heater_controller.cpp.o	69b4b49f03b36c17
+32598	56437	1728332078878576917	CMakeFiles/HomeAutomation.dir/sharedArgumant.cpp.o	fb5b7ba1076a9e53
+4752	56943	1728332051032907984	CMakeFiles/HomeAutomation.dir/has_main_backend.cpp.o	2249e387cb9ed311
+4751	69335	1728332051031907960	CMakeFiles/HomeAutomation.dir/main.cpp.o	868155b322a1abf2
+4752	73870	1728332051032907984	CMakeFiles/HomeAutomation.dir/HAS_main_GUI.cpp.o	80df7019aaf01e87
+4759	75624	1728332051039908153	CMakeFiles/HomeAutomation.dir/camera.cpp.o	827a49e0faf59b75
+31522	76170	1728332077802551067	CMakeFiles/HomeAutomation.dir/playback.cpp.o	a45117944e66dcfa
+36973	78016	1728332083253682027	CMakeFiles/HomeAutomation.dir/frameprocessor.cpp.o	84116d504fde3716
+78016	82209	1728332124296668145	HomeAutomation	78a94414e6061c14
