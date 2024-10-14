@@ -5,6 +5,7 @@
 #include <QtConcurrent/QtConcurrent>
 #include <opencv2/objdetect.hpp> // For face detection
 #include "sharedArgumant.h"
+#include <QThreadPool>
 
 
 Camera::Camera(int index, bool& face_detection, bool& camera_record, ImageWidget *imageWidget)
@@ -14,11 +15,13 @@ Camera::Camera(int index, bool& face_detection, bool& camera_record, ImageWidget
     imageWidget(imageWidget),
     stop_camera(false)
 {
+
     // Load the pre-trained Haar Cascade XML classifier
     if (!face_cascade.load("../../haarcascade_frontalface_default.xml")) {
         std::cerr << "Error loading face cascade file!" << std::endl;
-        //  return; // Return early on failure to load cascade
+        return; // Return early on failure to load cascade
     }
+
 }
 
 Camera::Camera(int index)
@@ -59,6 +62,12 @@ void Camera::processFrames() {
 
     cv::VideoWriter writer;
     QFuture<void> concurrentFuture;
+    int readSequenceNumber=0;
+    int nextFrameToDisplay=0;
+    int sameFrameCounter = 0;
+    cv::Mat previousFrame;
+    QThreadPool::globalInstance()->setMaxThreadCount(4); // Limit to 5 threads
+    const int scale = 3;  // Scale down factor
 
     while (videoCapture.isOpened() && !stop_camera) {
         cv::Mat frame;
@@ -70,35 +79,44 @@ void Camera::processFrames() {
         }
 
 
-
         if (face_detection) {
-         concurrentFuture =   QtConcurrent::run([this, frame](){
-                QElapsedTimer timer;
-                timer.start();
-                // Face detection
-                std::vector<cv::Rect> faces;
-                cv::Mat frame_gray;
-                cv::cvtColor(frame, frame_gray, cv::COLOR_BGR2GRAY);
-                cv::equalizeHist(frame_gray, frame_gray);
-                face_cascade.detectMultiScale(frame_gray, faces);
+            // Face detection
+            std::vector<cv::Rect> faces;
+            cv::Mat frame_gray;
 
-                for (const auto &face : faces) {
-                    cv::rectangle(frame, face, cv::Scalar(255, 0, 0), 2);
-                }
-                frameVector.push_back(frame);
-                // Measure the frame processing time
-                qint64 elapsed = timer.elapsed();
-               // qDebug() << "Frame processing time:" << elapsed << "milliseconds"  <<  "   Vector size:  "  << frameVector.size() ;
+            // Convert frame to grayscale
+            cv::cvtColor(frame, frame_gray, cv::COLOR_BGR2GRAY);
+            cv::equalizeHist(frame_gray, frame_gray);
 
+            // Scale factor for resizing the image
+            const int scale = 3;
 
-            });
-            //concurrentFuture.waitForFinished(30);
+            // Create a resized grayscale image
+            cv::Mat resized_frame_gray(cvRound(frame_gray.rows / scale), cvRound(frame_gray.cols / scale), CV_8UC1);
+
+            // Resize the grayscale image to reduce its size by the scale factor
+            cv::resize(frame_gray, resized_frame_gray, resized_frame_gray.size());
+
+            // Start a timer for performance measurement
+            QElapsedTimer timer;
+            timer.start();
+
+            // Perform face detection on the scaled-down image
+            face_cascade.detectMultiScale(resized_frame_gray, faces, 1.1, 3, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(20, 20));
+
+            // Measure the frame processing time
+            qint64 elapsed = timer.elapsed();
+            qDebug() << "Frame processing time: " << elapsed << " ms";
+
+            // Merge conversion and drawing into a single loop
+            for (const auto &face : faces) {
+                // Convert detected face positions back to original scale and draw rectangles
+                cv::Rect scaled_face(face.x * scale, face.y * scale, face.width * scale, face.height * scale);
+                cv::rectangle(frame, scaled_face, cv::Scalar(255, 0, 0), 2);
+            }
         }
-        else
-        {
-            frameVector.push_back(frame);
 
-        }
+
 
         if(camera_record){
             if(writer.isOpened())
@@ -127,22 +145,21 @@ void Camera::processFrames() {
         // Update the image on the widget
         if (sharedImgWidgMtx.tryLock() )
         {
-            qDebug() << "Size of vector  " << frameVector.size();
-            if(!frameVector.isEmpty()){
-            frame = frameVector.takeFirst();
             // Convert OpenCV Mat to QImage
             QImage processedImage = MatToQImage(frame);
 
             // Display the processed image in the Qt widget
             imageWidget->setImage(processedImage);
-            }
+
 
             sharedImgWidgMtx.unlock();
         }
 
+        // Update previousFrame for the next iteration
+        previousFrame = frame.clone();
 
 
-        QThread::msleep(10);  // Sleep briefly to avoid busy-waiting
+      //  QThread::msleep(100);  // Sleep briefly to avoid busy-waiting
 
 
     }

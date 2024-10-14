@@ -61,6 +61,17 @@ private:
     std::mutex queue_mutex;
     QVector<cv::Mat> frameVector;
 
+    /// Data structure to hold frame data
+
+    struct FrameStruct
+    {
+        cv::Mat frame;
+        int sequenceNumber;
+
+    };
+
+    QMap<int , cv::Mat> frameBuffer;
+
 };
 
 

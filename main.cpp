@@ -6,7 +6,7 @@
 #include <QDebug>
 #include <QtConcurrent/QtConcurrent>
 #include <QFuture>
-
+#include <thread>
 #include "opencv2/opencv.hpp"
 int main(int argc, char *argv[])
 {
@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
         std::cerr << e.what() << '\n';
     }
 
-
-
     return a.exec();
+
+
 }
 
 

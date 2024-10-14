@@ -18,3 +18,10 @@
 31522	76170	1728332077802551067	CMakeFiles/HomeAutomation.dir/playback.cpp.o	a45117944e66dcfa
 36973	78016	1728332083253682027	CMakeFiles/HomeAutomation.dir/frameprocessor.cpp.o	84116d504fde3716
 78016	82209	1728332124296668145	HomeAutomation	78a94414e6061c14
+22	101	1728891742047913965	HomeAutomation_autogen/timestamp	75393acd4b03859d
+22	101	1728891742047913965	HomeAutomation_autogen/mocs_compilation.cpp	75393acd4b03859d
+22	101	1728891742047913965	/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/HomeAutomation_autogen/timestamp	75393acd4b03859d
+22	101	1728891742047913965	/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-RelWithDebInfo/HomeAutomation_autogen/mocs_compilation.cpp	75393acd4b03859d
+102	31534	1728891742127915116	CMakeFiles/HomeAutomation.dir/main.cpp.o	868155b322a1abf2
+103	34328	1728891742128915131	CMakeFiles/HomeAutomation.dir/HAS_main_GUI.cpp.o	80df7019aaf01e87
+34328	37423	1728891776354407031	HomeAutomation	78a94414e6061c14
