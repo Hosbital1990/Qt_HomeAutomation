@@ -66,7 +66,6 @@ void Camera::processFrames() {
     int nextFrameToDisplay=0;
     int sameFrameCounter = 0;
     cv::Mat previousFrame;
-    QThreadPool::globalInstance()->setMaxThreadCount(4); // Limit to 5 threads
     const int scale = 3;  // Scale down factor
 
     while (videoCapture.isOpened() && !stop_camera) {

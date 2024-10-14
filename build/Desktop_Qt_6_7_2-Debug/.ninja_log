@@ -55,3 +55,13 @@
 106	33292	1728898359910441039	CMakeFiles/HomeAutomation.dir/HAS_main_GUI.cpp.o	43210efe43e6228d
 106	34017	1728898359910441039	CMakeFiles/HomeAutomation.dir/camera.cpp.o	7445744ce4dcb409
 34017	37219	1728898393820872721	HomeAutomation	1b31839738561deb
+21	2815	1728901247002552486	HomeAutomation_autogen/timestamp	f60e946e2d01ad8d
+21	2815	1728901247002552486	HomeAutomation_autogen/mocs_compilation.cpp	f60e946e2d01ad8d
+21	2815	1728901247002552486	/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-Debug/HomeAutomation_autogen/timestamp	f60e946e2d01ad8d
+21	2815	1728901247002552486	/home/hosbital/project/comeback/Qt_Home_Automation_System/HAS_Qt02/HomeAutomation/build/Desktop_Qt_6_7_2-Debug/HomeAutomation_autogen/mocs_compilation.cpp	f60e946e2d01ad8d
+2816	31772	1728901247028553326	CMakeFiles/HomeAutomation.dir/HomeAutomation_autogen/mocs_compilation.cpp.o	d4e6b428f6e38b17
+2818	34575	1728901247031553422	CMakeFiles/HomeAutomation.dir/has_main_backend.cpp.o	f994a413b95001cf
+2818	40742	1728901247031553422	CMakeFiles/HomeAutomation.dir/camera.cpp.o	7445744ce4dcb409
+2817	43491	1728901247029553358	CMakeFiles/HomeAutomation.dir/HAS_main_GUI.cpp.o	43210efe43e6228d
+2816	46782	1728901247028553326	CMakeFiles/HomeAutomation.dir/main.cpp.o	57eef188285e024e
+46783	49901	1728901290995959816	HomeAutomation	1b31839738561deb
