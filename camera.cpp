@@ -59,12 +59,10 @@ bool Camera::start_camera()
 
 void Camera::processFrames() {
 
-
+    QMutex writerMutex;
     cv::VideoWriter writer;
     QFuture<void> concurrentFuture;
-    int readSequenceNumber=0;
-    int nextFrameToDisplay=0;
-    int sameFrameCounter = 0;
+
     cv::Mat previousFrame;
     const int scale = 3;  // Scale down factor
 
@@ -118,28 +116,27 @@ void Camera::processFrames() {
 
 
         if(camera_record){
-            if(writer.isOpened())
-            {            //record camera
-                QtConcurrent::run([&frame, &writer](){
-
-                    writer.write(frame);
-                });
-            } else if(!writer.isOpened())
+           if(!writer.isOpened())
             {
-                QtConcurrent::run([&frame, &writer, this](){
                     int frameWidth = static_cast<int>(videoCapture.get(cv::CAP_PROP_FRAME_WIDTH));
                     int frameHeight = static_cast<int>(videoCapture.get(cv::CAP_PROP_FRAME_HEIGHT));
                     writer = cv::VideoWriter(generateFileName(index), cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, cv::Size(frameWidth, frameHeight));
                     qDebug()<< "cv::VideoWriter writer is: " << writer.isOpened();
-                    //Write to file
-                    writer.write(frame);
-                });
+
             }
+         concurrentFuture=   QtConcurrent::run([frame = frame.clone(), &writer,&writerMutex](){
+
+                QMutexLocker<QMutex> locker(&writerMutex);
+                //Write to file
+                writer.write(frame);
+            });
+
         } else if (writer.isOpened())
         {
+            concurrentFuture.waitForFinished();
+            QMutexLocker<QMutex> locker(&writerMutex);
             writer.release();
         }
-
 
         // Update the image on the widget
         if (sharedImgWidgMtx.tryLock() )
@@ -150,21 +147,17 @@ void Camera::processFrames() {
             // Display the processed image in the Qt widget
             imageWidget->setImage(processedImage);
 
-
             sharedImgWidgMtx.unlock();
         }
 
         // Update previousFrame for the next iteration
         previousFrame = frame.clone();
 
-
-      //  QThread::msleep(100);  // Sleep briefly to avoid busy-waiting
-
-
     }
     stop_camera = false;
     qDebug() << "--------------------------------->>>Leave ProcessFrames";
-
+    concurrentFuture.waitForFinished();
+    writer.release();
 }
 
 QImage Camera::MatToQImage(const cv::Mat &mat) {
@@ -223,43 +216,3 @@ Camera::~Camera() {
         delete imageWidget;
     }
 }
-
-
-
-
-// void Camera::saveCameraFrame()
-// {
-
-//     int frameWidth = static_cast<int>(videoCapture.get(cv::CAP_PROP_FRAME_WIDTH));
-//     int frameHeight = static_cast<int>(videoCapture.get(cv::CAP_PROP_FRAME_HEIGHT));
-
-//     cv::VideoWriter writer(generateFileName(index), cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, cv::Size(frameWidth, frameHeight));
-//     qDebug()<< "VideoCapture is Open: " << videoCapture.isOpened();
-//     cv::Mat frame ;
-//     while (!stop_camera) {
-
-//         std::unique_lock<std::mutex> lock(queue_mutex);
-//         // Wait for a new frame to be produced or stop flag to be set
-//         qDebug()<< "Camera Frame Queue Empty: " << this->camera_frame_queue.empty();
-
-//         condVar.wait(lock, [this]() {
-//             return !this->camera_frame_queue.empty() ;
-//         });
-
-//         if (!camera_frame_queue.empty()) {
-//             frame = camera_frame_queue.front();
-//             camera_frame_queue.pop();
-//             lock.unlock();
-
-//             writer.write(frame);
-
-//             std::cout << "camera 0" <<index << " saved a frame.\n";
-//             // cv::imwrite("output.jpg", frame);  // Save frame to disk, if needed
-
-//         } else if (stop_camera) {
-//             break;  // Exit if the stop flag is set
-//         }
-
-//     }
-
-// }
